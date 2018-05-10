@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var taskCounter = document.querySelector('#counter');
     var todo = document.querySelector('#todo');
     var counterElement = document.createElement('h3');
-    counterElement.innerText = 'Liczba zadań do zrobienia : ' + counter;
+    counterElement.innerText = 'Number of things to do : ' + counter;
     todo.insertBefore(counterElement, taskList);
 
     function newTask () {
@@ -34,16 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
             deleteButton.innerText = '\u274C';
             completeButton.innerText = '\u2714';
             inputTask.value = '';
-            counterElement.innerText ='Liczba zadań do zrobienia : ' + ++counter;
+            counterElement.innerText ='Number of things to do: ' + ++counter;
         }
 
         completeButton.addEventListener('click', function (event) {
             var taskText = this.parentElement.firstElementChild;
             taskText.classList.toggle('done');
             if (taskText.classList.contains('done')) {
-                counterElement.innerText ='Liczba zadań do zrobienia : ' + --counter;
+                counterElement.innerText ='Number of things to do : ' + --counter;
             } else {
-                counterElement.innerText ='Liczba zadań do zrobienia : ' + ++counter;
+                counterElement.innerText ='Number of things to do : ' + ++counter;
             }
         });
 
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', function () {
             targetedLi.parentElement.removeChild(targetedLi);
 
             if(targetedLi.firstChild.classList.contains('done')) {
-                counterElement.innerText ='Liczba zadań do zrobienia : ' + counter;
+                counterElement.innerText ='Number of things to do : ' + counter;
             } else {
-                counterElement.innerText ='Liczba zadań do zrobienia : ' + --counter;
+                counterElement.innerText ='Number of things to do : ' + --counter;
             }
         });
     }
