@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var todo = document.querySelector('#todo');
     var counterElement = document.createElement('h3');
     counterElement.innerText = 'Number of things to do : ' + counter;
-    todo.insertBefore(counterElement, taskList);
+    counterElement.classList.add('hidden');
+    todo.insertBefore(counterElement, inputTask);
 
     function newTask () {
         var newLi = document.createElement('li');
@@ -29,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
             newLi.appendChild(newHeader);
             newLi.appendChild(completeButton);
             newLi.appendChild(deleteButton);
+            removeButton.classList.remove('hidden');
+            counterElement.classList.remove('hidden');
             
             newHeader.innerText = inputTask.value;
             deleteButton.innerText = '\u274C';
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         deleteButton.addEventListener('click', function (event) {
+            var allItems = document.querySelector('#taskList').querySelectorAll('li');
             var targetedLi = this.parentElement;
             targetedLi.parentElement.removeChild(targetedLi);
 
@@ -56,6 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 counterElement.innerText ='Number of things to do : ' + --counter;
             }
+
+            if(counter === 0 && allItems.length === 1 ) {
+                removeButton.classList.add('hidden');
+                counterElement.classList.add('hidden');
+            }
         });
     }
 
@@ -63,12 +72,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     removeButton.addEventListener('click', function (event) {
         var targets = document.querySelector('#taskList').querySelectorAll('.done');
-        console.log(targets);
+        var doneItems = document.querySelector('#taskList').querySelectorAll('.done');
+        var allItems = document.querySelector('#taskList').querySelectorAll('li');
         if (targets.length > 0) {
             targets.forEach(function (target) {
                 var parentItem = target.parentElement;
                 parentItem.parentElement.removeChild(parentItem);
             })
+        }
+        if(counter === 0 && doneItems.length === allItems.length ) {
+            removeButton.classList.add('hidden');
+            counterElement.classList.add('hidden');
         }
     });
 });

@@ -63,7 +63,7 @@
 
     h3 {
         text-align: center;
-        margin: 40px 0;
+        margin: 20px 0;
         letter-spacing: 2px;
         background-image: -webkit-gradient(linear, left top, right top, from(#2998ff),to(#5643fa));
         background-image: linear-gradient(to right, #2998ff,#5643fa);
@@ -72,6 +72,8 @@
     }
 
     #taskList {
+
+        margin-top: 30px;
        
         li:first-child {
             border-top: 1px solid black;
@@ -135,9 +137,12 @@
         font-weight: 700;
         border-radius: 12px;
         cursor: pointer;
+        margin-top: 20px;
     }
 
- 
+    .hidden {
+        display: none;
+    }
 
 
 }
